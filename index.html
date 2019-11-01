@@ -43,6 +43,8 @@
     <script src="/assets/js/jquery-ui-1.10.3.full.min.js"></script>
     <script src="/assets/js/jquery.mustache.js"></script>
 
+    <script type="text/javascript" src="/assets/js/custom.js"></script>
+
     <!-- Wpos Libraries -->
     <script type="text/javascript" src="/assets/js/wpos/core.js"></script>
     <script type="text/javascript" src="/assets/js/wpos/sales.js"></script>
@@ -896,12 +898,14 @@
                         <i class="icon-user"></i>
                     </span>
                 </label>
+
                 <label class="block clearfix">
                     <span class="block input-icon input-icon-right">
                         <input class="form-control" id="password" name="password" onkeypress="if(event.keyCode == 13){WPOS.userLogin();}" type="password"  placeholder="Password"/>
                         <i class="icon-lock"></i>
                     </span>
                 </label>
+
                 <div class="space-6"></div>
                 <div class="space-6"></div>
                 <button id="loginbutton" onClick="WPOS.userLogin();" class="btn btn-primary width-35" disabled>

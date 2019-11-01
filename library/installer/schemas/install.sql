@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `activated` int(1) NOT NULL DEFAULT 0,
   `disabled` int(1) NOT NULL DEFAULT 0,
   `lastlogin` datetime NULL DEFAULT NULL,
-  `dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci;
 
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `devices` (
   `name` varchar(66) NOT NULL,
   `locationid` int(11) NOT NULL,
   `data` varchar(2048) NOT NULL,
-  `dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `disabled` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci;
@@ -159,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `device_map` (
 CREATE TABLE IF NOT EXISTS `locations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(66) NOT NULL,
-  `dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `disabled` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci;
@@ -204,6 +204,23 @@ CREATE TABLE IF NOT EXISTS `sale_history` (
   `userid` int(11) NOT NULL,
   `type` varchar(66) NOT NULL,
   `description` varchar(256) NOT NULL,
+  `dt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_history`
+--
+
+CREATE TABLE IF NOT EXISTS `files` (
+  `id` int(11) NOT NULL,
+  `refid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `type` varchar(66) NOT NULL,
+  `description` varchar(256) NOT NULL,
+  `path` varchar(256) NOT NULL,
+
   `dt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci;
 

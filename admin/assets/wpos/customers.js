@@ -114,6 +114,10 @@ function WPOSCustomers() {
             if (result !== false) {
                 customers[result.id] = result;
                 reloadCustomerTables();
+                var c = result.id;
+                $("select#ninvcustid").append('<option data-value="'+c+'" value="'+c+'">'+customer.name+'</option>');
+                $("#s2id_ninvcustid #select2-chosen-1").text(customer.name);
+                $("select#ninvcustid").val(c);
                 $("#addcustdialog").dialog("close");
             }
         } else {

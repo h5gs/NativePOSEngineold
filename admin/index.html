@@ -630,7 +630,8 @@
                     </div>
                     <div class="tab-pane" id="transitems">
                         <h4 class="inline">Items:</h4>
-                        <button onclick="WPOS.transactions.openInvoiceItemDialog(false);" class="btn btn-sm btn-primary transinvoptions" style="float: right;">Add</button>
+                        <button onclick="WPOS.transactions.openInvoiceItemDialog(false);$('#stitemsearch').autocomplete('search',  '');
+" class="btn btn-sm btn-primary transinvoptions" style="float: right;">Add</button>
                         <table width="100%" class="table">
                             <thead class="table-header">
                             <tr align="left">
@@ -670,6 +671,7 @@
                             <button onclick="WPOS.transactions.showGenerateDialog();" class="btn btn-sm btn-primary" style="padding: 5px;"><i class="icon-file"></i> Generate Invoice</button>
                             <button onclick="WPOS.transactions.showEmailDialog();" class="btn btn-sm btn-success" style="padding: 5px;"><i class="icon-envelope"></i> Email Invoice</button>
                             <button onclick="WPOS.transactions.showHistoryDialog();" class="btn btn-sm btn-warning" style="padding: 5px;"><i class="icon-list"></i> History</button>
+                            <button onclick="showFilesDialog();" class="btn btn-sm btn-warning" style="padding: 5px;"><i class="icon-file"></i> Files</button>
                         </div>
                     </div>
                 </div>
@@ -749,6 +751,7 @@
                 </div>
             </div>
             <div id="transhist">
+
                 <table class="table table-stripped table-responsive">
                     <thead>
                     <tr>
@@ -759,6 +762,22 @@
                     </tr>
                     </thead>
                     <tbody id="transhisttable">
+                    </tbody>
+                </table>
+            </div>
+            <div id="transfileshist">
+                <input type="file" id="Invoicefile" name="file" value="Upload File"> 
+
+                <table class="table table-stripped table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>User</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody id="transfilestable">
                     </tbody>
                 </table>
             </div>
@@ -879,6 +898,9 @@
         <script src="assets/wpos/wpos.js"></script>
         <script src="assets/wpos/customers.js"></script>
         <script src="assets/wpos/transactions.js"></script>
+
+        <script type="text/javascript" src="/assets/js/custom.js"></script>
+
 
         <!-- Websocket library -->
         <script type="text/javascript" src="/assets/libs/socketio/socket.io-1.4.5.js"></script>

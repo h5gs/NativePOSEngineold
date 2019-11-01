@@ -348,6 +348,32 @@
                 </form>
             </div>
         </div>
+
+
+
+        <div class="widget-box transparent">
+            <div class="widget-header widget-header-flat">
+                <h4 class="lighter">Customization</h4>
+            </div>
+            <div class="widget-body" style="padding-top: 10px;">
+                <form class="form-horizontal">
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <div class="col-sm-5"><label>Custom CSS:</label></div>
+                        <div class="col-sm-5"><textarea type="text" id="custom_css" /></textarea></div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <div class="col-sm-5"><label>Custom Javascript:</label></div>
+                        <div class="col-sm-5"><textarea type="text" id="custom_javascript" /></textarea></div>
+                    </div>
+                   
+                    
+                </form>
+            </div>
+        </div>
+
+
     </div>
     <div class="col-sm-12 align-center form-actions">
         <button class="btn btn-success" type="button" onclick="saveSettings();"><i class="icon-save align-top bigger-125"></i>Save</button>

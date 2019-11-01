@@ -252,6 +252,40 @@ class WposCustomerAccess {
         return $result;
     }
 
+
+    /**
+     * Get all transactions for the current customer
+     * @param $result
+     * @return mixed
+     */
+    public function getCustomerBalance($result){
+        // Get customer transactions
+        $transMdl = new TransactionsModel();
+        $trans = $transMdl->getByCustomer($this->data->id);
+        $balance = 0;
+        if ($trans===false){
+            $result['error'] = "Could not fetch your transactions: ".$transMdl->errorInfo;
+        } else {
+            $result['data'] = [];
+            // decode JSON and add extras
+            foreach ($trans as $tran){
+                $record = json_decode($tran['data']);
+                $balance += $record->balance;
+                
+                $record->type = $tran['type'];
+                
+            }
+            $result['data'] = WposAdminCustomers::getCustomerData($this->data->id);
+            unset($result['data']['pass']);
+            $result['data']['balance'] = $balance;
+        }
+            
+            
+        return $result;
+    }
+
+
+
     /**
      * Generate invoice for the customers specified transaction
      * @param $id

@@ -26,6 +26,7 @@ function WPOSTransactions() {
     // functions for opening info dialogs and populating data
     var curref;
     var curid;
+    this.currentId;
     // TRANSACTION DETAILS DIALOG FUNCTIONS
     this.openTransactionList = function(refs){
         // check input
@@ -79,6 +80,7 @@ function WPOSTransactions() {
         var record = transactions[ref];
         curref = ref;
         curid = record.id;
+        this.currentId = curid;
         // Populate general transaction info
         $("#transref").text(record.ref);
         $("#transid").text(record.id);
@@ -475,6 +477,28 @@ function WPOSTransactions() {
         WPOS.util.hideLoader();
     };
 
+    this.showFilesDialog = function(){
+        // Get the data
+        WPOS.util.showLoader();
+        var data = WPOS.sendJsonData("invoices/files/get", JSON.stringify({id: curid}));
+        if (data === false) {
+            return;
+        }
+        // Poputlate the data
+        var histtable = $("#transttable");
+        histtable.html('');
+        for (var i in data) {
+            histtable.append('<tr><td>' + data[i].dt + '</td><td>' + WPOS.users[data[i].userid].username + '</td><td>' + data[i].type + '</td><td>' + data[i].description + '</td></tr>');
+        }
+        // Open the dialog
+        var mdialog = $('#miscdialog');
+        mdialog.children("div").hide();
+        mdialog.children("#transhist").show();
+        mdialog.dialog('option', 'title', "Files History");
+        mdialog.dialog('open');
+        WPOS.util.hideLoader();
+    };
+
     this.showGenerateDialog = function(){
         var mdialog = $('#miscdialog');
         mdialog.children("div").hide();
@@ -801,7 +825,7 @@ function WPOSTransactions() {
     this.searchItems = function(query) {
         var results = [];
         query.trim();
-        if (query !== '') {
+        if (query !== '' || 1) {
             var upquery = query.toUpperCase();
             // search items for the text.
             if (items === null) {
@@ -1036,16 +1060,26 @@ function WPOSTransactions() {
             };
             $("#stitemsearch").autocomplete({
                 source: function (request, response) {
+                    //console.log(request.term);
                     response(WPOS.transactions.searchItems(request.term));
                 },
-                search: function () {
-                    // custom minLength
-                    var term = this.value;
-                    return term.length >= 2;
-                },
+                // search: function () {
+                //     // custom minLength
+                //     var term = this.value;
+                //     return term.length >= 0;
+                // },
+                minLength: 0,
                 focus: function () {
                     // prevent value inserted on focus
-                    return false;
+                    //$(this).data("uiAutocomplete").search($(this).val());
+                    //$(this).autocomplete("search")
+                    console.log("focuss");
+                    //$(this).data("uiAutocomplete").search($(this).val());
+
+                    //$(this).data("autocomplete").search($(this).val());
+                    $(this).autocomplete('search', $(this).val())
+
+                    //return false;
                 },
                 select: function (event, ui) {
                     $('#transitemsitemid').val(ui.item.id);

@@ -87,6 +87,8 @@ class WposTransactions {
         return $histMdl->create($saleid, $userid, $type, $desc);
     }
 
+
+
     /**
      * Get transaction history for the specified sale
      * @param $result
@@ -94,6 +96,37 @@ class WposTransactions {
      */
     public function getTransactionHistory($result){
         $histMdl = new TransHistModel();
+        $history = $histMdl->get($this->data->id);
+        if ($history===false){
+            $result['error'] = "Could not get transaction history: ".$histMdl->errorInfo;
+        } else {
+            $result['data'] = $history;
+        }
+        return $result;
+    }
+
+    /**
+     * Add a transaction files record.
+     * @param $saleid
+     * @param $userid
+     * @param $type
+     * @param $desc
+     * @return bool|string
+     */
+    public static function addTransactionFile($refid, $userid, $type, $path,$desc){
+        $histMdl = new FilesModel();
+        return $histMdl->create($refid, $userid, $type, $path,$desc);
+    }
+
+    
+
+    /**
+     * Get transaction file for the specified sale
+     * @param $result
+     * @return mixed
+     */
+    public function getTransactionFiles($result){
+        $histMdl = new FilesModel();
         $history = $histMdl->get($this->data->id);
         if ($history===false){
             $result['error'] = "Could not get transaction history: ".$histMdl->errorInfo;

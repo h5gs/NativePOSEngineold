@@ -185,6 +185,14 @@ function routeApiCall($action, $data, $result) {
             $result = $jsondata->getCustomers($result);
             break;
 
+        case "customer/get":
+            // $jsondata = new WposPosData();
+            // $result = $jsondata->getCustomers($result);
+            $wCust = new WposCustomerAccess($data);
+            $result = $wCust->getCustomerBalance($result);
+            break;
+
+
         case "devices/get":
             $jsondata = new WposPosData();
             $result = $jsondata->getPosDevices($result);
@@ -543,6 +551,13 @@ function routeApiCall($action, $data, $result) {
         case "invoices/history/get":
             $invMdl = new WposTransactions($data);
             $result = $invMdl->getTransactionHistory($result);
+            break;
+        case "invoices/files/get":
+            $invMdl = new WposTransactions($data);
+            $result = $invMdl->getTransactionFiles($result);
+            break;
+        case "invoices/files/post":
+            WposTransactions::addTransactionFile($_REQUEST['id'], $_SESSION['userId'],'sale', $_REQUEST['path'], "");
             break;
         case "invoices/generate":
             $invMdl = new WposTransactions(null, $_REQUEST['id'], false);

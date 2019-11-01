@@ -3,7 +3,7 @@
     <h1 style="display: inline-block;">
         Invoices
     </h1>
-    <button class="btn btn-primary btn-sm pull-right" onclick="showInvoiceForm();"><i class="icon-plus-sign align-top bigger-125"></i>Add</button>
+    <button class="btn btn-primary btn-sm pull-right" onclick="addCustomerBalanceEvent();showInvoiceForm();"><i class="icon-plus-sign align-top bigger-125"></i>Add</button>
     <button class="btn btn-success btn-sm pull-right" style="margin-right: 8px;" onclick="exportCurrentInvoices();"><i class="icon-cloud-download align-top bigger-125"></i>Export CSV</button>
     <div class="pull-right refsearchbox">
         <label for="refsearch">Ref:</label>&nbsp;<input id="refsearch" type="text" style="height: 35px;" onkeypress="if(event.keyCode == 13){doSearch();}"/>
@@ -59,6 +59,7 @@
 <div id="addinvoicedialog" class="hide" style="padding-left: 20px; padding-right: 20px;">
     <form id="addinvoiceform">
         <label class="fixedlabel">Customer: </label><select style="width: 180px;" id="ninvcustid"></select>
+        <button onclick="WPOS.customers.openAddCustomerDialog();" id="addbtn" class="btn btn-primary btn-sm pull-right"><i class="icon-pencil align-top bigger-125"></i>Add</button>
         <div class="space-8"></div>
         <label class="fixedlabel">Invoice Date: </label><input type="text" id="ninvprocessdt" onclick="$(this).blur();"/>
         <div class="space-8"></div>
