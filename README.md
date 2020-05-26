@@ -1,8 +1,13 @@
-### Note: WallacePOS is not longer actively maintained. If you would like to become a maintainer of this project please let me know.
 
 # WallacePOS
 ## An intuitive & modern web based POS system
 ![logo](https://wallacepos.com/images/wallacepos_logo_600.png)
+
+### New features added 
+Show customer total balance while selecting customer on invoice page.
+Multiple File/Bills upload options in invoices/sales popup.
+Settings to write own custom css/js code from settings page.
+Few bug fixes in generate invoice page, it seems non-working after csrf added
 
 WallacePOS uses the power of the modern web to provide an easy to use & extensible POS system.
 
