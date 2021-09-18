@@ -1,6 +1,29 @@
 
-# WallacePOS
+# NativePosEngine
 ## An intuitive & modern web based POS system
+This is fork of amazing project wallacepos which is not maintained now.
+
+We have decied to take this to next level and planed to make it best mobile pos app for everyone.
+
+We have developed below features.
+
+Show customer total balance while selecting customer on invoice page.
+Multiple File/Bills upload options in invoices/sales popup.
+Settings to write own custom css/js code from settings page.
+Few bug fixes in generate invoice page, it seems non-working after csrf added
+
+
+Have plans to add more features
+Custom Status field and option to change it
+Trigger Sms etc
+Simple Portal for Customer to Place Oder online and order gets synced to dashboard
+Android/iOS apps etc
+Much more
+We are planning to enhance and work on this with dedicated resources,
+
+
+This repo is not updated with setup instructions etc , we are going to do it soon.
+
 ![logo](https://wallacepos.com/images/wallacepos_logo_600.png)
 
 ### New features added 
